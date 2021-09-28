@@ -34,10 +34,57 @@ class FeedCell: UICollectionViewCell {
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
         iv.isUserInteractionEnabled = true
-        iv.image = #imageLiteral(resourceName: "mone")
+        iv.image = #imageLiteral(resourceName: "mone2")
         return iv
     }()
     
+    private lazy var likeButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(#imageLiteral(resourceName: "like_unselected"), for: .normal)
+        button.tintColor = .black
+        return button
+    }()
+    
+    private lazy var commentButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(#imageLiteral(resourceName: "comment"), for: .normal)
+        button.tintColor = .black
+        return button
+    }()
+    
+    private lazy var shareButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(#imageLiteral(resourceName: "send2"), for: .normal)
+        button.tintColor = .black
+        return button
+    }()
+    
+    //->저번에는 여기서 제공하는 기본 심볼이미지를 사용했는데 이 방법도 있구나를 깨닫게 되었다.
+    // 확실히 이 방법은 직관적고 보기 편하다 다만 이미지를 일일히 정리하고 편집해야 한다....
+
+    private let likesLabel: UILabel = {
+        let label = UILabel()
+        label.text = "1 좋아요"
+        label.font = UIFont.boldSystemFont(ofSize: 13)
+        return label
+    }()
+    
+    private let captionLabel: UILabel = {
+        let label = UILabel()
+        label.text = "모네"
+        label.font = UIFont.boldSystemFont(ofSize: 14)
+        return label
+    }()
+    
+    private let postTimeLabel: UILabel = {
+        let label = UILabel()
+        label.text = "2 일전"
+        label.font = UIFont.boldSystemFont(ofSize: 12)
+        label.textColor = .lightGray
+        return label
+    }()
+    
+  
     // MARK: -라이프 사이클
     
     override init(frame: CGRect){
@@ -60,6 +107,22 @@ class FeedCell: UICollectionViewCell {
             leftAnchor: profileImageView.rightAnchor,
             paddingLeft: 8
         )
+        
+        addSubview(postImageView)
+        postImageView.anchor(top: profileImageView.bottomAnchor, left: leftAnchor, right: rightAnchor, paddingTop: 8)
+        
+        postImageView.heightAnchor.constraint(equalTo: widthAnchor, multiplier: 1).isActive = true
+        
+        configureAcitionButtons()
+        
+        addSubview(likesLabel)
+        likesLabel.anchor(top: likeButton.bottomAnchor, left: leftAnchor, paddingTop: -4, paddingLeft: 8)
+        
+        addSubview(captionLabel)
+        captionLabel.anchor(top: likesLabel.bottomAnchor, left: leftAnchor, paddingTop: 8, paddingLeft: 8)
+        
+        addSubview(postTimeLabel)
+        postTimeLabel.anchor(top: captionLabel.bottomAnchor, left: leftAnchor, paddingTop: 8, paddingLeft: 8)
     }
     
     required init?(coder: NSCoder) {
@@ -70,6 +133,16 @@ class FeedCell: UICollectionViewCell {
     
     @objc func didTapUsername() {
         print("연결 여부 확인 ")
+    }
+    
+    // MARK: - 헬퍼
+    func configureAcitionButtons() {
+        let stackView = UIStackView(arrangedSubviews: [likeButton, commentButton, shareButton])
+        stackView.axis = .horizontal
+        stackView.distribution = .fillEqually
+        
+        addSubview(stackView)
+        stackView.anchor(top: postImageView.bottomAnchor, width: 120, height: 50)
     }
 }
 
