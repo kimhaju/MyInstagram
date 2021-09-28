@@ -16,6 +16,9 @@
 		9A39CD8327018A1E0073065A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A39CD8227018A1E0073065A /* Assets.xcassets */; };
 		9A39CD862701F58A0073065A /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A39CD852701F58A0073065A /* FeedCell.swift */; };
 		9A39CD892701FB7B0073065A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A39CD882701FB7B0073065A /* Extensions.swift */; };
+		9A4207A72702F57900DDE299 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4207A62702F57900DDE299 /* LoginController.swift */; };
+		9A4207AB2702F5CE00DDE299 /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4207AA2702F5CE00DDE299 /* RegistrationController.swift */; };
+		9A4207AF2703379600DDE299 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4207AE2703379600DDE299 /* CustomTextField.swift */; };
 		9A528A8827008554009BD69F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A528A8727008554009BD69F /* AppDelegate.swift */; };
 		9A528A8A27008554009BD69F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A528A8927008554009BD69F /* SceneDelegate.swift */; };
 		9A528A8C27008554009BD69F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A528A8B27008554009BD69F /* ViewController.swift */; };
@@ -33,6 +36,9 @@
 		9A39CD8227018A1E0073065A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../../Downloads/Assets.xcassets; sourceTree = "<group>"; };
 		9A39CD852701F58A0073065A /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
 		9A39CD882701FB7B0073065A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		9A4207A62702F57900DDE299 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		9A4207AA2702F5CE00DDE299 /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
+		9A4207AE2703379600DDE299 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		9A528A8427008554009BD69F /* MyInstagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyInstagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A528A8727008554009BD69F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9A528A8927008554009BD69F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -53,6 +59,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9A4207A52702F52500DDE299 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				9A4207A62702F57900DDE299 /* LoginController.swift */,
+				9A4207AA2702F5CE00DDE299 /* RegistrationController.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
 		9A528A7B27008554009BD69F = {
 			isa = PBXGroup;
 			children = (
@@ -107,6 +122,7 @@
 		9A528A9E27008710009BD69F /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				9A4207A52702F52500DDE299 /* Authentication */,
 				9A39CD6D27015E190073065A /* MainTapController.swift */,
 				9A39CD70270168B90073065A /* FeedController.swift */,
 				9A39CD73270169230073065A /* SearchController.swift */,
@@ -128,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				9A39CD852701F58A0073065A /* FeedCell.swift */,
+				9A4207AE2703379600DDE299 /* CustomTextField.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -209,11 +226,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A4207AF2703379600DDE299 /* CustomTextField.swift in Sources */,
 				9A39CD6E27015E190073065A /* MainTapController.swift in Sources */,
+				9A4207A72702F57900DDE299 /* LoginController.swift in Sources */,
 				9A39CD862701F58A0073065A /* FeedCell.swift in Sources */,
 				9A39CD772701694E0073065A /* ImageSelectorController.swift in Sources */,
 				9A39CD7A27016C0A0073065A /* NotificationsController.swift in Sources */,
 				9A39CD74270169230073065A /* SearchController.swift in Sources */,
+				9A4207AB2702F5CE00DDE299 /* RegistrationController.swift in Sources */,
 				9A528A8C27008554009BD69F /* ViewController.swift in Sources */,
 				9A39CD7D27016C210073065A /* ProfileController.swift in Sources */,
 				9A39CD71270168B90073065A /* FeedController.swift in Sources */,
