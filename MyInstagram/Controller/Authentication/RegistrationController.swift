@@ -11,10 +11,13 @@ class RegistrationController: UIViewController {
     
     // MARK: - Properties
     
+    private var viewModel = RegistrationViewModel()
+    
     private let plushPhotoButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(#imageLiteral(resourceName: "plus_photo"), for: .normal)
         button.tintColor = .white
+        button.addTarget(self, action: #selector(handleProfilePhotoSelect), for: .touchUpInside)
         return button
     }()
     
@@ -60,12 +63,35 @@ class RegistrationController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        configureNotificationObservers()
     }
     
     // MARK: - 액션
     @objc func handleShowLogin() {
         navigationController?.popViewController(animated: true)
     }
+    
+    @objc func textDidChange(sender: UITextField) {
+        if sender == emailTextField {
+            viewModel.email = sender.text
+        }else if sender == passwordTextField {
+            viewModel.passsword = sender.text
+        }else if sender == fullnameTextField {
+            viewModel.fullname = sender.text
+        }else {
+            viewModel.username = sender.text
+        }
+        updateForm()
+    }
+    
+    @objc func handleProfilePhotoSelect() {
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.allowsEditing = true
+        
+        present(picker, animated: true, completion: nil)
+    }
+    
     
     // MARK: -헬퍼
     
@@ -96,4 +122,43 @@ class RegistrationController: UIViewController {
         alreadyAccountButton.centerX(inView: view)
         alreadyAccountButton.anchor(bottom: view.safeAreaLayoutGuide.bottomAnchor)
     }
+    
+    func configureNotificationObservers() {
+        emailTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+        
+        passwordTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+        
+        fullnameTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+        
+        usernameTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+    }
 }
+// MARK: -FormViewModel
+
+extension RegistrationController: FormViewModel {
+    func updateForm() {
+        signUpButton.backgroundColor = viewModel.buttonBackgroundColor
+        signUpButton.setTitleColor(viewModel.buttonTitleColor, for: .normal)
+        signUpButton.isEnabled = viewModel.formIsValid
+    }
+}
+
+// MARK: -이미지 선택
+
+extension RegistrationController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        guard let selectImage = info[.editedImage] as? UIImage else { return }
+        
+        plushPhotoButton.layer.cornerRadius = plushPhotoButton.frame.width/2
+        plushPhotoButton.layer.masksToBounds = true
+        plushPhotoButton.layer.borderColor = UIColor.white.cgColor
+        plushPhotoButton.layer.borderWidth = 2
+        plushPhotoButton.setImage(selectImage.withRenderingMode(.alwaysOriginal), for: .normal)
+        
+        self.dismiss(animated: true, completion: nil)
+        
+    }
+}
+
