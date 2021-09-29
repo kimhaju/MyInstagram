@@ -23,7 +23,6 @@ struct LoginViewModel: AuthenticationViewModel {
     
     //->입력하지 않으면 아예 처리 안해주는 식으로
     var formIsValid: Bool {
-        //->추가 검증, 비번이 6글자 이하일땐 안됨
         return email?.isEmpty == false && passsword?.isEmpty == false
     }
     
