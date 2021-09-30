@@ -27,6 +27,8 @@
 		9A528A8C27008554009BD69F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A528A8B27008554009BD69F /* ViewController.swift */; };
 		9A528A8F27008554009BD69F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A528A8D27008554009BD69F /* Main.storyboard */; };
 		9A528A9427008557009BD69F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A528A9227008557009BD69F /* LaunchScreen.storyboard */; };
+		9A60FF7527058F6A0045811C /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A60FF7427058F6A0045811C /* ProfileCell.swift */; };
+		9A60FF7827058F810045811C /* ProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A60FF7727058F810045811C /* ProfileHeader.swift */; };
 		9AA1D20D270416DC00D05B93 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA1D20C270416DC00D05B93 /* AuthenticationViewModel.swift */; };
 		9AA1D2102704595B00D05B93 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9AA1D20F2704595B00D05B93 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
@@ -55,6 +57,8 @@
 		9A528A8E27008554009BD69F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9A528A9327008557009BD69F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9A528A9527008557009BD69F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9A60FF7427058F6A0045811C /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
+		9A60FF7727058F810045811C /* ProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeader.swift; sourceTree = "<group>"; };
 		9AA1D20C270416DC00D05B93 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 		9AA1D20F2704595B00D05B93 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		ED61CAF011E5A27834ABD957 /* Pods_MyInstagram.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyInstagram.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -171,6 +175,7 @@
 		9A528AA027008727009BD69F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				9A60FF7A27058F940045811C /* Profile */,
 				9A39CD852701F58A0073065A /* FeedCell.swift */,
 				9A4207AE2703379600DDE299 /* CustomTextField.swift */,
 			);
@@ -182,6 +187,15 @@
 			children = (
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		9A60FF7A27058F940045811C /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				9A60FF7427058F6A0045811C /* ProfileCell.swift */,
+				9A60FF7727058F810045811C /* ProfileHeader.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 		B7A38DCC9EDAF0A1A4771467 /* Frameworks */ = {
@@ -308,6 +322,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A4207AF2703379600DDE299 /* CustomTextField.swift in Sources */,
+				9A60FF7827058F810045811C /* ProfileHeader.swift in Sources */,
 				9A39CD6E27015E190073065A /* MainTapController.swift in Sources */,
 				9A4207A72702F57900DDE299 /* LoginController.swift in Sources */,
 				9A39CD862701F58A0073065A /* FeedCell.swift in Sources */,
@@ -322,6 +337,7 @@
 				9A528A8827008554009BD69F /* AppDelegate.swift in Sources */,
 				9A38A3A92704891800251351 /* ImageUploader.swift in Sources */,
 				9A38A3AC2704894700251351 /* AuthService.swift in Sources */,
+				9A60FF7527058F6A0045811C /* ProfileCell.swift in Sources */,
 				9A39CD892701FB7B0073065A /* Extensions.swift in Sources */,
 				9A528A8A27008554009BD69F /* SceneDelegate.swift in Sources */,
 			);

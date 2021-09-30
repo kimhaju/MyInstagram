@@ -37,6 +37,8 @@ class MainTapController: UITabBarController {
     // MARK: - 홈 탭바
     
     func configureViewControllers() {
+        view.backgroundColor = .white
+        
         let layout = UICollectionViewFlowLayout()
         
         //의견 보내기
@@ -51,8 +53,10 @@ class MainTapController: UITabBarController {
         // 좋아요 알림
         let notifications = templateNavigationController(unselectedImage: #imageLiteral(resourceName: "like_unselected"), selectedImage: #imageLiteral(resourceName: "like_selected"), rootViewController: NotificationsController())
         
+        let profileLayout = UICollectionViewFlowLayout()
+        
         // 프로파일
-        let profile = templateNavigationController(unselectedImage: #imageLiteral(resourceName: "profile_unselected"), selectedImage: #imageLiteral(resourceName: "profile_selected"), rootViewController: ProfileController())
+        let profile = templateNavigationController(unselectedImage: #imageLiteral(resourceName: "profile_unselected"), selectedImage: #imageLiteral(resourceName: "profile_selected"), rootViewController: ProfileController(collectionViewLayout: profileLayout))
         
         viewControllers = [feed, search, imageSelector, notifications, profile]
         
