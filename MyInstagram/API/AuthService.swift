@@ -18,6 +18,13 @@ struct AuthCredentials {
 
 //->파이어 스토어에 저장할 코드 생성 
 struct AuthService {
+    
+    //->로그인 처리
+    static func logUserIn(withEmail email: String, password: String, completion: AuthDataResultCallback?){
+        Auth.auth().signIn(withEmail: email, password: password, completion: completion)
+    }
+    
+    //->회원 가입 처리
     static func registerUser(withCredential credentials: AuthCredentials, completion: @escaping(Error?) -> Void){
         
         imageUploader.uploadImage(image: credentials.profileImage) { imageURL in

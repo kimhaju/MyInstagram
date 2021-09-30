@@ -86,7 +86,7 @@ class RegistrationController: UIViewController {
                 print("연결하는데 문제가 생겼습니다! \(error.localizedDescription)")
                 return
             }
-            print("파이어 스토어에 연결하는데 성공했습니다!")
+            self.dismiss(animated: true, completion: nil)
         }
     }
     
