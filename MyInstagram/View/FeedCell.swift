@@ -10,7 +10,7 @@ import UIKit
 class FeedCell: UICollectionViewCell {
     
     // MARK: -properties
-    
+   
     private let profileImageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
