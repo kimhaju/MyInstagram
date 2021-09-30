@@ -55,7 +55,7 @@ class RegistrationController: UIViewController {
     private let alreadyAccountButton: UIButton = {
         let button = UIButton(type: .system)
         
-        button.attributedTitle(firstPart: "이미 계정이 있으신가요?", secondPart: "Sign Up")
+        button.attributedTitle(firstPart: "이미 계정이 있으신가요?", secondPart: "Log In")
         button.addTarget(self, action: #selector(handleShowLogin), for: .touchUpInside)
         return button
     }()
@@ -76,12 +76,18 @@ class RegistrationController: UIViewController {
         guard let email = emailTextField.text else { return }
         guard let password = passwordTextField.text else { return }
         guard let fullname = fullnameTextField.text else { return }
-        guard let username = usernameTextField.text else { return }
+        guard let username = usernameTextField.text?.lowercased() else { return }
         guard let profileImage = self.profileImage else { return }
         
         let credentials = AuthCredentials(email: email, password: password, fullname: fullname, username: username, profileImage: profileImage)
         
-        AuthService.registerUser(withCredential: credentials)
+        AuthService.registerUser(withCredential: credentials) { error in
+            if let error = error {
+                print("연결하는데 문제가 생겼습니다! \(error.localizedDescription)")
+                return
+            }
+            print("파이어 스토어에 연결하는데 성공했습니다!")
+        }
     }
     
     @objc func handleShowLogin() {
