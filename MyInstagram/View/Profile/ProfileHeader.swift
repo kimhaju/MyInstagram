@@ -6,22 +6,28 @@
 //
 
 import UIKit
+import SDWebImage
 
 class ProfileHeader: UICollectionReusableView {
     
     // MARK: - Properties
     
+    var viewModel: ProfileHeaderViewModel? {
+        didSet {configure()}
+    }
+    
+    //->프로필 사진
     private let profileImageView: UIImageView = {
         let iv = UIImageView()
-        iv.image = #imageLiteral(resourceName: "mone3")
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
+        iv.backgroundColor = .lightGray
         return iv
     }()
     
+    //->이름
     private let nameLabel: UILabel  = {
         let label = UILabel()
-        label.text = "claude monet"
         label.font = UIFont.boldSystemFont(ofSize: 14)
         return label
     }()
@@ -83,7 +89,6 @@ class ProfileHeader: UICollectionReusableView {
     }()
     
     
-    
     // MARK: -lifecycle
     
     override init(frame: CGRect) {
@@ -96,7 +101,8 @@ class ProfileHeader: UICollectionReusableView {
         profileImageView.layer.cornerRadius = 80 / 2
         
         addSubview(nameLabel)
-        nameLabel.anchor(top: profileImageView.bottomAnchor, left: leftAnchor, paddingTop: 12, paddingLeft: 12)
+        nameLabel.anchor(top: profileImageView.bottomAnchor, left: leftAnchor, paddingTop: 12, paddingLeft: 30)
+        //->원래 paddinfLeft 12였는데 너무 왼쪽으로 쏠려서 조정
         
         addSubview(editProfileFollowButton)
         editProfileFollowButton.anchor(
@@ -144,6 +150,13 @@ class ProfileHeader: UICollectionReusableView {
     }
     
     // MARK: -helpers
+    
+    func configure() {
+        guard let viewModel = viewModel else { return }
+        
+        nameLabel.text = viewModel.fullname
+        profileImageView.sd_setImage(with: viewModel.profileImageURL)
+    }
     
     func attributedStateText(value: Int, label: String) -> NSAttributedString {
         let attributedText = NSMutableAttributedString(string: "\(value)\n", attributes: [.font: UIFont.boldSystemFont(ofSize: 14)])
