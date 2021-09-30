@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		500CA17187EAA2062A7608B0 /* Pods_MyInstagram.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED61CAF011E5A27834ABD957 /* Pods_MyInstagram.framework */; };
+		9A0332E92705C13800D56892 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0332E82705C13800D56892 /* UserService.swift */; };
+		9A0332EC2705C1CE00D56892 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0332EB2705C1CE00D56892 /* Constants.swift */; };
+		9A0332EF2705C48B00D56892 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0332EE2705C48B00D56892 /* User.swift */; };
 		9A38A3A92704891800251351 /* ImageUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A38A3A82704891800251351 /* ImageUploader.swift */; };
 		9A38A3AC2704894700251351 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A38A3AB2704894700251351 /* AuthService.swift */; };
 		9A39CD6E27015E190073065A /* MainTapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A39CD6D27015E190073065A /* MainTapController.swift */; };
@@ -36,6 +39,9 @@
 /* Begin PBXFileReference section */
 		0E5EECBE5DB483ECA56BBBFB /* Pods-MyInstagram.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyInstagram.debug.xcconfig"; path = "Target Support Files/Pods-MyInstagram/Pods-MyInstagram.debug.xcconfig"; sourceTree = "<group>"; };
 		2B6C37681BF345F0F3A1AB13 /* Pods-MyInstagram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyInstagram.release.xcconfig"; path = "Target Support Files/Pods-MyInstagram/Pods-MyInstagram.release.xcconfig"; sourceTree = "<group>"; };
+		9A0332E82705C13800D56892 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		9A0332EB2705C1CE00D56892 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		9A0332EE2705C48B00D56892 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		9A38A3A82704891800251351 /* ImageUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploader.swift; sourceTree = "<group>"; };
 		9A38A3AB2704894700251351 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		9A39CD6D27015E190073065A /* MainTapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTapController.swift; sourceTree = "<group>"; };
@@ -137,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				9A39CD882701FB7B0073065A /* Extensions.swift */,
+				9A0332EB2705C1CE00D56892 /* Constants.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -146,6 +153,7 @@
 			children = (
 				9A38A3A82704891800251351 /* ImageUploader.swift */,
 				9A38A3AB2704894700251351 /* AuthService.swift */,
+				9A0332E82705C13800D56892 /* UserService.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -185,6 +193,7 @@
 		9A528AA12700872A009BD69F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				9A0332EE2705C48B00D56892 /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -331,12 +340,15 @@
 				9AA1D20D270416DC00D05B93 /* AuthenticationViewModel.swift in Sources */,
 				9A39CD74270169230073065A /* SearchController.swift in Sources */,
 				9A4207AB2702F5CE00DDE299 /* RegistrationController.swift in Sources */,
+				9A0332EF2705C48B00D56892 /* User.swift in Sources */,
 				9A528A8C27008554009BD69F /* ViewController.swift in Sources */,
+				9A0332EC2705C1CE00D56892 /* Constants.swift in Sources */,
 				9A39CD7D27016C210073065A /* ProfileController.swift in Sources */,
 				9A39CD71270168B90073065A /* FeedController.swift in Sources */,
 				9A528A8827008554009BD69F /* AppDelegate.swift in Sources */,
 				9A38A3A92704891800251351 /* ImageUploader.swift in Sources */,
 				9A38A3AC2704894700251351 /* AuthService.swift in Sources */,
+				9A0332E92705C13800D56892 /* UserService.swift in Sources */,
 				9A60FF7527058F6A0045811C /* ProfileCell.swift in Sources */,
 				9A39CD892701FB7B0073065A /* Extensions.swift in Sources */,
 				9A528A8A27008554009BD69F /* SceneDelegate.swift in Sources */,

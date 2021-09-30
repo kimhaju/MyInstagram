@@ -12,9 +12,27 @@ private let headerIdentifier = "ProfileHeader"
 
 class ProfileController: UICollectionViewController {
     
+    // MARK: - 프로퍼티스
+    
+    var user: User?{
+        didSet { navigationItem.title = user?.username }
+    }
+    
+    // MARK: - 라이프 사이클
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCollectionView()
+        fetchUser()
+    }
+    
+    // MARK: -API
+    
+    func fetchUser() {
+        UserService.fetchUser { user in
+            self.user = user
+            
+        }
     }
     
     // MARK: -helpers
