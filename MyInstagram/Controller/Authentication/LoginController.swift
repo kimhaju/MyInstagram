@@ -7,11 +7,16 @@
 
 import UIKit
 
+protocol AuthenticationDelegate: class {
+    func authenticationDidComplete()
+}
+
 class LoginController: UIViewController {
     
     // MARK: - Properties
     
     private var viewModel = LoginViewModel()
+    weak var delegate: AuthenticationDelegate?
     
     private let iconImage : UIImageView = {
        let iv = UIImageView(image: #imageLiteral(resourceName: "Instagram_logo_white"))
@@ -74,17 +79,21 @@ class LoginController: UIViewController {
         guard let email = emailTextField.text else { return }
         guard let password = passwordTextField.text else { return }
         
-        AuthService.logUserIn(withEmail: email, password: password) { result, error in
+        AuthService.logUserIn(withEmail: email, password: password) { (result, error) in
             if let error = error {
                 print("로그인 연결에 문제가 생겼습니다.\(error.localizedDescription)")
                 return
             }
-            self.dismiss(animated: true, completion: nil)
+            self.delegate?.authenticationDidComplete()
+            //->이걸 빼니까 로그인시 화면이 안바뀜 ㅅㅂ
+            // 10월 1일 여기 문제가 아니라 로그아웃 처리 delegate를 제대로 전달하지 않아서 그렇다. 
+//            self.dismiss(animated: true, completion: nil)
         }
     }
     
     @objc func handleShowSignUp() {
         let controller = RegistrationController()
+        controller.delegate = delegate
         navigationController?.pushViewController(controller, animated: true)
     }
     

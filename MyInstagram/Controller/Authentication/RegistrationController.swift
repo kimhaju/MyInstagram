@@ -13,6 +13,7 @@ class RegistrationController: UIViewController {
     
     private var viewModel = RegistrationViewModel()
     private var profileImage: UIImage?
+    weak var delegate: AuthenticationDelegate?
     
     private let plushPhotoButton: UIButton = {
         let button = UIButton(type: .system)
@@ -86,11 +87,13 @@ class RegistrationController: UIViewController {
                 print("연결하는데 문제가 생겼습니다! \(error.localizedDescription)")
                 return
             }
-            self.dismiss(animated: true, completion: nil)
+            self.delegate?.authenticationDidComplete()
         }
     }
     
     @objc func handleShowLogin() {
+        let controller = RegistrationController()
+        controller.delegate = delegate
         navigationController?.popViewController(animated: true)
     }
     

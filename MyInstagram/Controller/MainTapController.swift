@@ -13,19 +13,32 @@ import Firebase
 class MainTapController: UITabBarController {
     
     // MARK: -라이프 사이클
+    private var user: User? {
+        didSet {
+            guard let user = user else { return }
+            configureViewControllers(withUser: user)
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureViewControllers()
         checkIfUserIsLoggedIn()
+        fetchUser()
     }
     
     // MARK: -API
+    
+    func fetchUser() {
+        UserService.fetchUser { user in
+            self.user = user
+        }
+    }
     
     func checkIfUserIsLoggedIn() {
         if Auth.auth().currentUser == nil {
             DispatchQueue.main.async {
                 let controller = LoginController()
+                controller.delegate = self
                 let nav = UINavigationController(rootViewController: controller)
                 nav.modalPresentationStyle = .fullScreen
                 self.present(nav, animated: true, completion: nil)
@@ -36,7 +49,7 @@ class MainTapController: UITabBarController {
 
     // MARK: - 홈 탭바
     
-    func configureViewControllers() {
+    func configureViewControllers(withUser user: User) {
         view.backgroundColor = .white
         
         let layout = UICollectionViewFlowLayout()
@@ -53,10 +66,10 @@ class MainTapController: UITabBarController {
         // 좋아요 알림
         let notifications = templateNavigationController(unselectedImage: #imageLiteral(resourceName: "like_unselected"), selectedImage: #imageLiteral(resourceName: "like_selected"), rootViewController: NotificationsController())
         
-        let profileLayout = UICollectionViewFlowLayout()
-        
         // 프로파일
-        let profile = templateNavigationController(unselectedImage: #imageLiteral(resourceName: "profile_unselected"), selectedImage: #imageLiteral(resourceName: "profile_selected"), rootViewController: ProfileController(collectionViewLayout: profileLayout))
+        let profileController = ProfileController(user: user)
+//        let profileLayout = UICollectionViewLayout()
+        let profile = templateNavigationController(unselectedImage: #imageLiteral(resourceName: "profile_unselected"), selectedImage: #imageLiteral(resourceName: "profile_selected"), rootViewController: profileController)
         
         viewControllers = [feed, search, imageSelector, notifications, profile]
         
@@ -70,6 +83,14 @@ class MainTapController: UITabBarController {
         nav.tabBarItem.selectedImage = selectedImage
         nav.navigationBar.tintColor = .black
         return nav
-        
+    }
+}
+
+// MARK: - 한번에 전달하는 델리게이트 
+
+extension MainTapController: AuthenticationDelegate {
+    func authenticationDidComplete() {
+        fetchUser()
+        self.dismiss(animated: true, completion: nil)
     }
 }

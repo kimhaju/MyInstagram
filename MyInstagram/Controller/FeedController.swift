@@ -25,6 +25,8 @@ class FeedController: UICollectionViewController {
         do {
             try Auth.auth().signOut()
             let controller = LoginController()
+            //->여길 추가하고 나서야 오늘 에러가 해결 
+            controller.delegate = self.tabBarController as? MainTapController
             let nav = UINavigationController(rootViewController: controller)
             nav.modalPresentationStyle = .fullScreen
             self.present(nav, animated: true, completion: nil)
