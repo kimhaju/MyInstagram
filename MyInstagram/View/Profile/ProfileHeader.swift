@@ -101,7 +101,7 @@ class ProfileHeader: UICollectionReusableView {
         profileImageView.layer.cornerRadius = 80 / 2
         
         addSubview(nameLabel)
-        nameLabel.anchor(top: profileImageView.bottomAnchor, left: leftAnchor, paddingTop: 12, paddingLeft: 30)
+        nameLabel.anchor(top: profileImageView.bottomAnchor, left: leftAnchor, paddingTop: 12, paddingLeft: 20)
         //->원래 paddinfLeft 12였는데 너무 왼쪽으로 쏠려서 조정
         
         addSubview(editProfileFollowButton)
