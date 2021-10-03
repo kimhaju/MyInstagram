@@ -79,6 +79,7 @@ extension ProfileController {
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerIdentifier, for: indexPath) as! ProfileHeader
+        header.delegate = self
        
             header.viewModel = ProfileHeaderViewModel(user: user)
             return header
@@ -112,5 +113,22 @@ extension ProfileController: UICollectionViewDelegateFlowLayout {
         
         // 0930 발견한 에러: 여기서 화면 레이아웃 구성이 맞지 않으면 must register a nib or a class for the identifier or connect a prototype cell in a storyboard 이런 에러가 뜬다. 그래서 아이덴티티파이 연결을 확인해봤는데 이상하게 다 연결되어있는데 왜그럴까 했는데 내가 header 구성을 해야 하는데 footer구성을 해서 맞지 않은 것이였다.
         // 에러 로그 잘 읽어보고 에러 생긴 시점부터 하나씩 주석처리 해가면서 확인해보기
+    }
+}
+
+// MARK: -프로파일 델리게이트
+
+extension ProfileController: ProfileHeaderDelegate {
+    func header(_ profileHeader: ProfileHeader, didTapActionsButtonFor user: User) {
+        if user.isCurrentUser {
+            print("프로파일 수정")
+        } else if user.isFollowed {
+            print("유저 언팔로우 ")
+        } else {
+            UserService.follow(uid: user.uid) { error in
+                print("팔로우 유저! ui를 업데이트 합니다...")
+            }
+            
+        }
     }
 }

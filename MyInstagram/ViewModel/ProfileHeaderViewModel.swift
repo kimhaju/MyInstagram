@@ -5,7 +5,7 @@
 //  Created by haju Kim on 2021/09/30.
 //
 
-import Foundation
+import UIKit
 
 struct ProfileHeaderViewModel {
     let user: User
@@ -16,6 +16,22 @@ struct ProfileHeaderViewModel {
     
     var profileImageURL: URL? {
         return URL(string: user.profileImageURL)
+    }
+    
+    var followButtonText: String {
+        if user.isCurrentUser {
+            return "Edit Profile"
+        }
+        
+        return user.isFollowed ? "Following" : "Followed"
+    }
+    
+    var followButtonBackgroundColor: UIColor {
+        return user.isCurrentUser ? .white : .systemBlue
+    }
+    
+    var followButtonTextColor: UIColor {
+        return user.isCurrentUser ? .black : .white
     }
     
     init(user: User){

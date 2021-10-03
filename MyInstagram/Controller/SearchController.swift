@@ -10,6 +10,7 @@ import UIKit
 private let reuseIdentifier = "UserCell"
 
 class SearchController: UITableViewController  {
+    
     // MARK: - 프로퍼티스
     
     private var users = [User]()

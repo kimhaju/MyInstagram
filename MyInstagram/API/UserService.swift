@@ -5,8 +5,9 @@
 //  Created by haju Kim on 2021/09/30.
 //
 
-import Foundation
 import Firebase
+
+typealias FirestoreCompletion = (Error?) -> Void
 
 struct UserService {
     //->프로파일에 쓰이는 패치
@@ -28,5 +29,16 @@ struct UserService {
             let users = snapshot.documents.map({ User(dictionary: $0.data())})
             completion(users)
         }
+    }
+    
+    static func follow(uid: String, completion: @escaping(FirestoreCompletion)) {
+        guard let currentUid = Auth.auth().currentUser?.uid else { return }
+        Collection_Following.document(currentUid).collection("user_following").document(uid).setData([:]) { error in
+            Collection_Followers.document(uid).collection("user_followers").document(currentUid).setData([:], completion: completion)
+        }
+    }
+    
+    static func unfollow(uid: String, completion: @escaping(FirestoreCompletion)) {
+        
     }
 }
