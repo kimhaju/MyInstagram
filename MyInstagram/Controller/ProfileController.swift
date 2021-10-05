@@ -35,18 +35,20 @@ class ProfileController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCollectionView()
+        checkIfUserIsFollowed()
+        
     }
     
     // MARK: -API
     
-//
-//    func fetchUser() {
-//        UserService.fetchUser { user in
-//            self.user = user
-//        }
-//    }
-//
+    func checkIfUserIsFollowed() {
+        UserService.checkUserIsFollowed(uid: user.uid) { isFollowed in
+            self.user.isFollowed = isFollowed
+            self.collectionView.reloadData()
+        }
+    }
     
+
     // MARK: -helpers
     
     func configureCollectionView() {
@@ -120,15 +122,21 @@ extension ProfileController: UICollectionViewDelegateFlowLayout {
 
 extension ProfileController: ProfileHeaderDelegate {
     func header(_ profileHeader: ProfileHeader, didTapActionsButtonFor user: User) {
+        
         if user.isCurrentUser {
-            print("프로파일 수정")
-        } else if user.isFollowed {
-            print("유저 언팔로우 ")
-        } else {
-            UserService.follow(uid: user.uid) { error in
-                print("팔로우 유저! ui를 업데이트 합니다...")
+            print("프로파일 수정 ")
+        }else if user.isFollowed {
+            print("언팔로우 유저")
+            UserService.unfollow(uid: user.uid) { error in
+                self.user.isFollowed = false
+                self.collectionView.reloadData()
             }
-            
+        }else {
+            UserService.follow(uid: user.uid) { error in
+                print("팔로우 유저 ")
+                self.user.isFollowed = true
+                self.collectionView.reloadData()
+            }
         }
     }
 }

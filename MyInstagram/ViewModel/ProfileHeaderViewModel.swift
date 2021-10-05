@@ -23,9 +23,10 @@ struct ProfileHeaderViewModel {
             return "Edit Profile"
         }
         
-        return user.isFollowed ? "Following" : "Followed"
+        return user.isFollowed ? "Following" : "Follow"
     }
     
+    //->프로필 수정할때랑 팔로우 버튼 차이를 주기 위한것
     var followButtonBackgroundColor: UIColor {
         return user.isCurrentUser ? .white : .systemBlue
     }

@@ -34,11 +34,28 @@ struct UserService {
     static func follow(uid: String, completion: @escaping(FirestoreCompletion)) {
         guard let currentUid = Auth.auth().currentUser?.uid else { return }
         Collection_Following.document(currentUid).collection("user_following").document(uid).setData([:]) { error in
+            
             Collection_Followers.document(uid).collection("user_followers").document(currentUid).setData([:], completion: completion)
         }
     }
     
     static func unfollow(uid: String, completion: @escaping(FirestoreCompletion)) {
+        guard let currnetUid = Auth.auth().currentUser?.uid else { return }
         
+        //->10. 5 에러 팔로우 해제가 안되었던 이유 _를 -로 써버림 그래서 파이어 베이스의 컬렉션을 못찾았던 거임 
+        Collection_Following.document(currnetUid).collection("user_following").document(uid).delete { error in
+            
+            Collection_Followers.document(uid).collection("user_followers").document(currnetUid).delete(completion: completion)
+        }
+    }
+    
+    static func checkUserIsFollowed(uid: String, completion: @escaping(Bool)->Void){
+        guard let currnetUid = Auth.auth().currentUser?.uid else { return }
+        
+        Collection_Following.document(currnetUid).collection("user_following").document(uid).getDocument { (snapshot, error) in
+            
+            guard let isFollowed = snapshot?.exists else { return }
+            completion(isFollowed)
+        }
     }
 }
