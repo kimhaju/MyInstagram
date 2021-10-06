@@ -36,7 +36,7 @@ class ProfileController: UICollectionViewController {
         super.viewDidLoad()
         configureCollectionView()
         checkIfUserIsFollowed()
-        
+        fetchUserStats()
     }
     
     // MARK: -API
@@ -45,6 +45,15 @@ class ProfileController: UICollectionViewController {
         UserService.checkUserIsFollowed(uid: user.uid) { isFollowed in
             self.user.isFollowed = isFollowed
             self.collectionView.reloadData()
+        }
+    }
+    
+    func fetchUserStats() {
+        UserService.fetchUserStats(uid: user.uid) { stats in
+            self.user.stats = stats
+            self.collectionView.reloadData()
+            
+            print("디버그: \(stats)")
         }
     }
     
@@ -126,14 +135,12 @@ extension ProfileController: ProfileHeaderDelegate {
         if user.isCurrentUser {
             print("프로파일 수정 ")
         }else if user.isFollowed {
-            print("언팔로우 유저")
             UserService.unfollow(uid: user.uid) { error in
                 self.user.isFollowed = false
                 self.collectionView.reloadData()
             }
         }else {
             UserService.follow(uid: user.uid) { error in
-                print("팔로우 유저 ")
                 self.user.isFollowed = true
                 self.collectionView.reloadData()
             }
