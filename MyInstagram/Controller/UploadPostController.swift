@@ -19,8 +19,11 @@ class UploadPostController: UIViewController {
         return iv
     }()
     
-    private let captionTextView: UITextView = {
-       let tv = UITextView()
+    private lazy var captionTextView: InputTextView = {
+       let tv = InputTextView()
+        tv.placeholderText = "Enter caption...."
+        tv.font = UIFont.systemFont(ofSize: 16)
+        tv.delegate = self
         return tv
     }()
     
@@ -28,7 +31,7 @@ class UploadPostController: UIViewController {
        let label = UILabel()
         label.textColor = .lightGray
         label.font = UIFont.systemFont(ofSize: 14)
-        label.text = "0/100"
+        label.text = "0/150"
         return label
     }()
     
@@ -51,6 +54,12 @@ class UploadPostController: UIViewController {
     
     // MARK: - 헬퍼
     
+    func checkMaxLength(_ textview: UITextView){
+        if (textview.text.count) > 150 {
+            textview.deleteBackward()
+        }
+    }
+    
     func configureUI() {
         view.backgroundColor = .white
         navigationItem.title = "upload Post"
@@ -69,6 +78,17 @@ class UploadPostController: UIViewController {
         captionTextView.anchor(top: photoImageView.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor,paddingTop: 16 ,paddingLeft: 12, paddingRight: 12, height: 64)
         
         view.addSubview(chatacterCountLabel)
-        chatacterCountLabel.anchor(bottom: captionTextView.bottomAnchor, right: view.rightAnchor, paddingRight: 12)
+        chatacterCountLabel.anchor(bottom: captionTextView.bottomAnchor, right: view.rightAnchor,paddingBottom: -20 , paddingRight: 12)
+    }
+}
+
+// MARK: - 텍스트 전달 델리게이트
+
+extension UploadPostController: UITextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+        checkMaxLength(textView)
+        let count = textView.text.count
+        chatacterCountLabel.text = "\(count)/150"
+        
     }
 }
