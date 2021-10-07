@@ -18,6 +18,9 @@ struct User {
     //->팔로우 여부
     var isFollowed = false
     
+    //->10.6 수정 버튼
+    var isEditProfile = false
+    
     var stats: UserStats!
     
     var isCurrentUser: Bool { return Auth.auth().currentUser?.uid == uid }

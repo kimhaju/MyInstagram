@@ -131,9 +131,18 @@ extension ProfileController: UICollectionViewDelegateFlowLayout {
 
 extension ProfileController: ProfileHeaderDelegate {
     func header(_ profileHeader: ProfileHeader, didTapActionsButtonFor user: User) {
-        
         if user.isCurrentUser {
-            print("프로파일 수정 ")
+            print("프로파일 수정")
+            let data = [
+                "fullname" : String(),
+                "username" : String()
+            ]
+
+            UserService.editProfileUser(uid: user.uid, data: data) { error in
+                self.user.isEditProfile = true
+                self.collectionView.reloadData()
+            }
+           
         }else if user.isFollowed {
             UserService.unfollow(uid: user.uid) { error in
                 self.user.isFollowed = false

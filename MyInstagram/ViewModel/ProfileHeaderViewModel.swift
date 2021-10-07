@@ -20,7 +20,8 @@ struct ProfileHeaderViewModel {
     
     var followButtonText: String {
         if user.isCurrentUser {
-            return "Edit Profile"
+//            return "Edit Profile"
+            return user.isEditProfile ? "Complete" : "Edit Profile"
         }
         
         return user.isFollowed ? "Following" : "Follow"

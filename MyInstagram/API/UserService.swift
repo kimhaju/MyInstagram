@@ -49,6 +49,22 @@ struct UserService {
         }
     }
     
+    //->유저 프로파일 업데이트 기능을 사용해보자. 문제 생길시 여기를 우선 주석처리
+    static func editProfileUser(uid: String, data: [String: Any], completion: @escaping(FirestoreCompletion)){
+        guard let currentUid = Auth.auth().currentUser?.uid else { return }
+        
+        Collection_Users.document(currentUid).collection("users").document(uid).updateData(data) {
+            error in
+            
+            if let error = error {
+                print("업데이트 하는데 문제가 생겼습니다. \(error.localizedDescription)")
+            } else {
+                print("업데이트에 성공했습니다. \(currentUid)")
+            }
+        }
+    }
+    
+    //->팔로우 체크 여부 확인
     static func checkUserIsFollowed(uid: String, completion: @escaping(Bool)->Void){
         guard let currnetUid = Auth.auth().currentUser?.uid else { return }
         
