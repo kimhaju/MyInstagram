@@ -35,6 +35,8 @@
 		9A5B4268270813D000EABD65 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5B4267270813D000EABD65 /* UserCell.swift */; };
 		9A60FF7527058F6A0045811C /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A60FF7427058F6A0045811C /* ProfileCell.swift */; };
 		9A60FF7827058F810045811C /* ProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A60FF7727058F810045811C /* ProfileHeader.swift */; };
+		9A792BC8270EED7A00DD749F /* UploadPostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A792BC7270EED7A00DD749F /* UploadPostController.swift */; };
+		9A792BCB270EFEDE00DD749F /* InputTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A792BCA270EFEDE00DD749F /* InputTextView.swift */; };
 		9AA1D20D270416DC00D05B93 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA1D20C270416DC00D05B93 /* AuthenticationViewModel.swift */; };
 		9AA1D2102704595B00D05B93 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9AA1D20F2704595B00D05B93 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
@@ -71,6 +73,8 @@
 		9A5B4267270813D000EABD65 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		9A60FF7427058F6A0045811C /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
 		9A60FF7727058F810045811C /* ProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeader.swift; sourceTree = "<group>"; };
+		9A792BC7270EED7A00DD749F /* UploadPostController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPostController.swift; sourceTree = "<group>"; };
+		9A792BCA270EFEDE00DD749F /* InputTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTextView.swift; sourceTree = "<group>"; };
 		9AA1D20C270416DC00D05B93 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 		9AA1D20F2704595B00D05B93 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		ED61CAF011E5A27834ABD957 /* Pods_MyInstagram.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyInstagram.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -150,6 +154,7 @@
 			children = (
 				9A39CD882701FB7B0073065A /* Extensions.swift */,
 				9A0332EB2705C1CE00D56892 /* Constants.swift */,
+				9A792BCA270EFEDE00DD749F /* InputTextView.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -174,6 +179,7 @@
 				9A39CD762701694E0073065A /* ImageSelectorController.swift */,
 				9A39CD7927016C0A0073065A /* NotificationsController.swift */,
 				9A39CD7C27016C210073065A /* ProfileController.swift */,
+				9A792BC7270EED7A00DD749F /* UploadPostController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -341,6 +347,7 @@
 			files = (
 				9A4207AF2703379600DDE299 /* CustomTextField.swift in Sources */,
 				9A60FF7827058F810045811C /* ProfileHeader.swift in Sources */,
+				9A792BC8270EED7A00DD749F /* UploadPostController.swift in Sources */,
 				9A39CD6E27015E190073065A /* MainTapController.swift in Sources */,
 				9A4207A72702F57900DDE299 /* LoginController.swift in Sources */,
 				9A39CD862701F58A0073065A /* FeedCell.swift in Sources */,
@@ -353,6 +360,7 @@
 				9A0332EF2705C48B00D56892 /* User.swift in Sources */,
 				9A528A8C27008554009BD69F /* ViewController.swift in Sources */,
 				9A0332F22705CC1200D56892 /* ProfileHeaderViewModel.swift in Sources */,
+				9A792BCB270EFEDE00DD749F /* InputTextView.swift in Sources */,
 				9A0332EC2705C1CE00D56892 /* Constants.swift in Sources */,
 				9A39CD7D27016C210073065A /* ProfileController.swift in Sources */,
 				9A4E582927088FD3005BB7E7 /* UserCellViewModel.swift in Sources */,
