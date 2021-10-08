@@ -93,6 +93,8 @@ class MainTapController: UITabBarController {
                 guard let selectedImage = items.singlePhoto?.image else { return }
                
                 let controller = UploadPostController()
+                controller.selectedImage = selectedImage
+                controller.delegate = self
                 let nav = UINavigationController(rootViewController: controller)
                 nav.modalPresentationStyle = .fullScreen
                 self.present(nav, animated: false, completion: nil)
@@ -135,4 +137,14 @@ extension MainTapController: UITabBarControllerDelegate {
         
         return true
     }
+}
+
+// MARK: - 업로드 포스트 델리게이트
+extension MainTapController: UploadPostControllerDelegate {
+    func controllerDidFinishUploadingPost(_ controller: UploadPostController) {
+        selectedIndex = 0
+        controller.dismiss(animated: true, completion: nil)
+    }
+    
+    
 }
