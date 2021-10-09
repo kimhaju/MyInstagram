@@ -10,20 +10,23 @@ import UIKit
 class FeedCell: UICollectionViewCell {
     
     // MARK: -properties
+    
+    var viewModel: PostViewModel? {
+        didSet{ configure() }
+    }
    
     private let profileImageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
         iv.isUserInteractionEnabled = true
-        iv.image = #imageLiteral(resourceName: "mone")
+        iv.backgroundColor = .lightGray
         return iv
     }()
     
     private lazy var usernameButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitleColor(.black, for: .normal)
-        button.setTitle("mone", for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 13)
         button.addTarget(self, action: #selector(didTapUsername), for: .touchUpInside)
         return button
@@ -64,14 +67,12 @@ class FeedCell: UICollectionViewCell {
 
     private let likesLabel: UILabel = {
         let label = UILabel()
-        label.text = "1 좋아요"
         label.font = UIFont.boldSystemFont(ofSize: 13)
         return label
     }()
     
     private let captionLabel: UILabel = {
         let label = UILabel()
-        label.text = "모네"
         label.font = UIFont.boldSystemFont(ofSize: 14)
         return label
     }()
@@ -136,6 +137,19 @@ class FeedCell: UICollectionViewCell {
     }
     
     // MARK: - 헬퍼
+    
+    func configure() {
+        guard let viewModel = viewModel else { return }
+        
+        captionLabel.text = viewModel.caption
+        postImageView.sd_setImage(with: viewModel.imageURL)
+        
+        profileImageView.sd_setImage(with: viewModel.profileImageURL)
+        usernameButton.setTitle(viewModel.username, for: .normal)
+        
+        likesLabel.text = viewModel.likesLabelText
+    }
+
     func configureAcitionButtons() {
         let stackView = UIStackView(arrangedSubviews: [likeButton, commentButton, shareButton])
         stackView.axis = .horizontal

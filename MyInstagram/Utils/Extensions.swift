@@ -6,8 +6,11 @@
 //
 
 import UIKit
+import JGProgressHUD
 
 extension UIViewController {
+    static let hud = JGProgressHUD(style: .dark)
+    
     //->그라데이션 설정
     func configureGradiantLayer() {
         let gradiant = CAGradientLayer()
@@ -15,6 +18,16 @@ extension UIViewController {
         gradiant.locations = [0, 0.6, 1]
         view.layer.addSublayer(gradiant)
         gradiant.frame = view.frame
+    }
+    
+    func showLoader(_ show: Bool){
+        view.endEditing(true)
+        
+        if show {
+            UIViewController.hud.show(in: view)
+        } else {
+            UIViewController.hud.dismiss()
+        }
     }
 }
 

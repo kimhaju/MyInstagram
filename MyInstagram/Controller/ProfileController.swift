@@ -15,6 +15,7 @@ class ProfileController: UICollectionViewController {
     // MARK: - 프로퍼티스
     
     private var user: User
+    private var posts = [Post]()
     
     // MARK: - 라이프 사이클
     
@@ -37,6 +38,7 @@ class ProfileController: UICollectionViewController {
         configureCollectionView()
         checkIfUserIsFollowed()
         fetchUserStats()
+        fetchPosts()
     }
     
     // MARK: -API
@@ -52,11 +54,16 @@ class ProfileController: UICollectionViewController {
         UserService.fetchUserStats(uid: user.uid) { stats in
             self.user.stats = stats
             self.collectionView.reloadData()
-            
-            print("디버그: \(stats)")
+           
         }
     }
     
+    func fetchPosts() {
+        PostService.fetchPosts(forUser: user.uid) { posts in
+            self.posts = posts
+            self.collectionView.reloadData()
+        }
+    }
 
     // MARK: -helpers
     
@@ -80,11 +87,12 @@ class ProfileController: UICollectionViewController {
 extension ProfileController {
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 9
+        return posts.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! ProfileCell
+        cell.viewModel = PostViewModel(post: posts[indexPath.row])
         return cell
     }
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -100,7 +108,11 @@ extension ProfileController {
 // MARK: - 델리게이트
 
 extension ProfileController {
-    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let controller = FeedController(collectionViewLayout: UICollectionViewFlowLayout())
+        controller.post = posts[indexPath.row]
+        navigationController?.pushViewController(controller, animated: true)
+    }
 }
 
 // MARK: - 델리게이트 레이아웃
