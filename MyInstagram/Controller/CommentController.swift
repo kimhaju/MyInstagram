@@ -13,6 +13,8 @@ class CommentController: UICollectionViewController {
     
     // MARK: - properties
     
+    private let post: Post
+    
     private lazy var commentInputView: CommentInputAccesoryView = {
         let frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 50)
         let cv = CommentInputAccesoryView(frame: frame)
@@ -21,6 +23,15 @@ class CommentController: UICollectionViewController {
     }()
     
     // MARK: - 라이프 사이클
+    
+    init(post: Post) {
+        self.post = post
+        super.init(collectionViewLayout: UICollectionViewFlowLayout())
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -85,8 +96,14 @@ extension CommentController: UICollectionViewDelegateFlowLayout {
 
 extension CommentController: CommentInputAccesaryViewDelegate {
     func inputView(_ inputView: CommentInputAccesoryView, wantsToUploadComment comment: String) {
-       
-        inputView.clearCommentTextView()
+    
+        guard let tab = tabBarController as? MainTapController else { return }
+        guard let user = tab.user else { return }
+        
+        CommentService.uploadComment(comment: comment, postID: post.postId, user: user) { error in
+            self.showLoader(false)
+            inputView.clearCommentTextView()
+        }
         
     }
 }

@@ -14,7 +14,8 @@ import YPImagePicker
 class MainTapController: UITabBarController {
     
     // MARK: -라이프 사이클
-    private var user: User? {
+    
+   var user: User? {
         didSet {
             guard let user = user else { return }
             configureViewControllers(withUser: user)

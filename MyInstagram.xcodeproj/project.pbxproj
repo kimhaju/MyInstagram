@@ -43,6 +43,7 @@
 		9A792BCB270EFEDE00DD749F /* InputTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A792BCA270EFEDE00DD749F /* InputTextView.swift */; };
 		9AA1D20D270416DC00D05B93 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA1D20C270416DC00D05B93 /* AuthenticationViewModel.swift */; };
 		9AA1D2102704595B00D05B93 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9AA1D20F2704595B00D05B93 /* GoogleService-Info.plist */; };
+		9AA3C8E02715972700738B1D /* CommentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA3C8DF2715972700738B1D /* CommentService.swift */; };
 		9AA55964271140F50098BBE4 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA55963271140F50098BBE4 /* Post.swift */; };
 		9AA55967271188BB0098BBE4 /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA55966271188BB0098BBE4 /* PostViewModel.swift */; };
 /* End PBXBuildFile section */
@@ -87,6 +88,7 @@
 		9A792BCA270EFEDE00DD749F /* InputTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTextView.swift; sourceTree = "<group>"; };
 		9AA1D20C270416DC00D05B93 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 		9AA1D20F2704595B00D05B93 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9AA3C8DF2715972700738B1D /* CommentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentService.swift; sourceTree = "<group>"; };
 		9AA55963271140F50098BBE4 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		9AA55966271188BB0098BBE4 /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
 		ED61CAF011E5A27834ABD957 /* Pods_MyInstagram.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyInstagram.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -178,6 +180,7 @@
 				9A38A3AB2704894700251351 /* AuthService.swift */,
 				9A0332E82705C13800D56892 /* UserService.swift */,
 				9A002A422710750000B9DA3F /* PostService.swift */,
+				9AA3C8DF2715972700738B1D /* CommentService.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -372,6 +375,7 @@
 				9A39CD862701F58A0073065A /* FeedCell.swift in Sources */,
 				9A39CD772701694E0073065A /* ImageSelectorController.swift in Sources */,
 				9A39CD7A27016C0A0073065A /* NotificationsController.swift in Sources */,
+				9AA3C8E02715972700738B1D /* CommentService.swift in Sources */,
 				9A3CE62A2714342300373393 /* CommentController.swift in Sources */,
 				9AA1D20D270416DC00D05B93 /* AuthenticationViewModel.swift in Sources */,
 				9A5B4268270813D000EABD65 /* UserCell.swift in Sources */,
