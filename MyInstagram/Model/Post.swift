@@ -8,14 +8,15 @@
 import Firebase
 
 struct Post {
-    let caption: String
-    let likes: Int
+    var caption: String
+    var likes: Int
     let imageURL: String
     let ownerUid: String
     let timestamp: Timestamp
     let postId: String
     let ownerImageURL: String
     let ownerUsername: String
+    var didLike = false
     
     init(postId: String, dictionary: [String: Any]) {
         self.postId = postId

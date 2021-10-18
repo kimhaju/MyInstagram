@@ -52,4 +52,18 @@ struct PostService {
         }
     }
     
+    static func likePost(post: Post, completion: @escaping(FirestoreCompletion)){
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        
+        Collection_Posts.document(post.postId).collection("post-likes").document(uid).setData([:]) { _ in
+            
+            Collection_Posts.document(post.postId).updateData(["likes": post.likes + 1])
+            
+            Collection_Users.document(uid).collection("user-likes").document(post.postId).setData([:], completion: completion)
+        }
+    }
+    
+    static func unlikePost() {
+        
+    }
 }

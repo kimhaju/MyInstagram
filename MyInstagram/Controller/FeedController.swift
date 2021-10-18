@@ -116,4 +116,17 @@ extension FeedController: FeedCellDelegate {
         let controller = CommentController(post: post)
         navigationController?.pushViewController(controller, animated: true)
     }
+    
+    func cell(_ cell: FeedCell, didLike post: Post) {
+        cell.viewModel?.post.didLike.toggle()
+        
+        if post.didLike {
+            print("포스트 좋아요 취소")
+        }else {
+            PostService.likePost(post: post) { error in
+                cell.likeButton.setImage(#imageLiteral(resourceName: "like_selected"), for: .normal)
+                cell.likeButton.tintColor = .red
+            }
+        }
+    }
 }
