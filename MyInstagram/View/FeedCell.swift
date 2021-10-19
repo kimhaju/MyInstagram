@@ -10,6 +10,7 @@ import UIKit
 protocol FeedCellDelegate: class {
     func cell(_ cell: FeedCell, wantsToShowCommentsFor post: Post)
     func cell(_ cell: FeedCell, didLike post: Post)
+    func cell(_ cell: FeedCell, wantsToShowProfileFor uid: String)
 }
 
 class FeedCell: UICollectionViewCell {
@@ -22,12 +23,17 @@ class FeedCell: UICollectionViewCell {
     
     weak var delegate: FeedCellDelegate?
    
-    private let profileImageView: UIImageView = {
+    private lazy var profileImageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
         iv.isUserInteractionEnabled = true
         iv.backgroundColor = .lightGray
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(showUserProfile))
+        iv.isUserInteractionEnabled = true
+        iv.addGestureRecognizer(tap)
+        
         return iv
     }()
     
@@ -35,7 +41,8 @@ class FeedCell: UICollectionViewCell {
         let button = UIButton(type: .system)
         button.setTitleColor(.black, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 13)
-        button.addTarget(self, action: #selector(didTapUsername), for: .touchUpInside)
+        button.addTarget(self, action: #selector(showUserProfile), for: .touchUpInside)
+
         return button
     }()
     
@@ -141,10 +148,13 @@ class FeedCell: UICollectionViewCell {
     
     // MARK: -액션
     
-    @objc func didTapUsername() {
-        print("연결 여부 확인")
+    @objc func showUserProfile() {
+        guard let viewModel = viewModel else { return }
+        print("아이디 체크 : \(viewModel.post.ownerUid)")
+        delegate?.cell(self, wantsToShowProfileFor: viewModel.post.ownerUid)
+        
     }
-    
+
     @objc func didTapComments() {
         guard let viewModel = viewModel else { return }
         delegate?.cell(self, wantsToShowCommentsFor: viewModel.post)

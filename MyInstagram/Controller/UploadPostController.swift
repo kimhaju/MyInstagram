@@ -74,7 +74,6 @@ class UploadPostController: UIViewController {
                 print("이미지 업로드 디버그 확인: \(error.localizedDescription)")
                 return
             }
-
             self.delegate?.controllerDidFinishUploadingPost(self)
         }
     }

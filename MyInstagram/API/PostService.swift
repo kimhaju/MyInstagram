@@ -66,8 +66,8 @@ struct PostService {
     static func unlikePost(post: Post, completion: @escaping(FirestoreCompletion)) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         
-//        guard post.likes > 0 else { return }
-//        
+        guard post.likes > 0 else { return }
+        
         Collection_Posts.document(post.postId).updateData(["likes" : post.likes - 1])
         
         Collection_Posts.document(post.postId).collection("post-likes").document(uid).delete { _ in
