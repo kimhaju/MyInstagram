@@ -33,6 +33,7 @@
 		9A4207AF2703379600DDE299 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4207AE2703379600DDE299 /* CustomTextField.swift */; };
 		9A4E582927088FD3005BB7E7 /* UserCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4E582827088FD3005BB7E7 /* UserCellViewModel.swift */; };
 		9A512040272170AE000E7B4E /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A51203F272170AE000E7B4E /* Notification.swift */; };
+		9A512043272184FF000E7B4E /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A512042272184FF000E7B4E /* NotificationService.swift */; };
 		9A528A8827008554009BD69F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A528A8727008554009BD69F /* AppDelegate.swift */; };
 		9A528A8A27008554009BD69F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A528A8927008554009BD69F /* SceneDelegate.swift */; };
 		9A528A8C27008554009BD69F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A528A8B27008554009BD69F /* ViewController.swift */; };
@@ -80,6 +81,7 @@
 		9A4207AE2703379600DDE299 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		9A4E582827088FD3005BB7E7 /* UserCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCellViewModel.swift; sourceTree = "<group>"; };
 		9A51203F272170AE000E7B4E /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		9A512042272184FF000E7B4E /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		9A528A8427008554009BD69F /* MyInstagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyInstagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A528A8727008554009BD69F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9A528A8927008554009BD69F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 				9A0332E82705C13800D56892 /* UserService.swift */,
 				9A002A422710750000B9DA3F /* PostService.swift */,
 				9AA3C8DF2715972700738B1D /* CommentService.swift */,
+				9A512042272184FF000E7B4E /* NotificationService.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -406,6 +409,7 @@
 				9A39CD71270168B90073065A /* FeedController.swift in Sources */,
 				9A528A8827008554009BD69F /* AppDelegate.swift in Sources */,
 				9A38A3A92704891800251351 /* ImageUploader.swift in Sources */,
+				9A512043272184FF000E7B4E /* NotificationService.swift in Sources */,
 				9AA55964271140F50098BBE4 /* Post.swift in Sources */,
 				9A38A3AC2704894700251351 /* AuthService.swift in Sources */,
 				9A002A432710750000B9DA3F /* PostService.swift in Sources */,
