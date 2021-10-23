@@ -10,8 +10,7 @@ import Firebase
 struct NotificationService {
     
     static func uploadNotification(toUid uid: String,
-                                   profileImageURL: String,
-                                   username: String,
+                                   fromUser: User,
                                    type: NotificationType,
                                    post: Post? = nil) {
         
@@ -21,12 +20,11 @@ struct NotificationService {
         let docRef = Collection_Notifications.document(uid).collection("user-notification").document()
         
         var data: [String: Any] = ["timestamp" : Timestamp(date: Date()),
-                                   "uid": currentUid,
+                                   "uid": fromUser.uid,
                                    "type" : type.rawValue,
                                    "id": docRef.documentID,
-                                   "userProfileImageURL": profileImageURL,
-                                   "username": username
-        ]
+                                   "userProfileImageURL": fromUser.profileImageURL,
+                                   "username": fromUser.username]
         
         if let post = post {
             data["postId"] = post.postId

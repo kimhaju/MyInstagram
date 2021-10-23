@@ -27,7 +27,7 @@ class NotificationCell: UITableViewCell {
     private let infoLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 14)
-        label.text = "van gogh"
+        label.numberOfLines = 0
         return label
     }()
     
@@ -102,6 +102,8 @@ class NotificationCell: UITableViewCell {
         guard let viewModel = viewModel else { return }
         
         profileImageView.sd_setImage(with: viewModel.profileImageURL)
+        postImageView.sd_setImage(with: viewModel.postImageURL)
+        
+        infoLabel.attributedText = viewModel.notificationMessage
     }
-    
 }

@@ -15,11 +15,11 @@ enum NotificationType: Int {
     
     var notificationMessage: String {
         switch self {
-        case .like: return "당신의 포스트를 좋아합니다."
+        case .like: return " 당신의 포스트를 좋아합니다."
         case .follow:
-            return "당신을 팔로우 합니다."
+            return " 당신을 팔로우 합니다."
         case .comment:
-            return "당신의 글에 댓글이 달렸습니다."
+            return " 당신의 글에 댓글이 달렸습니다."
         }
     }
 }
