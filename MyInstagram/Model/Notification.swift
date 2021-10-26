@@ -34,7 +34,6 @@ struct Notification {
     let userProfileImageURL: String
     let username: String
    
-    
     init(dictionary: [String: Any]) {
         self.uid = dictionary["uid"] as? String ?? ""
         self.postImageURL = dictionary["postImageURL"] as? String ?? ""
