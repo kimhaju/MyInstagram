@@ -17,6 +17,7 @@ class FeedController: UICollectionViewController {
     private var posts = [Post]() {
         didSet { collectionView.reloadData() }
     }
+    
     var post: Post?
     
     override func viewDidLoad() {
