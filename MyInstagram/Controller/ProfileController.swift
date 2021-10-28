@@ -156,6 +156,8 @@ extension ProfileController: ProfileHeaderDelegate {
             UserService.unfollow(uid: user.uid) { error in
                 self.user.isFollowed = false
                 self.collectionView.reloadData()
+                
+                PostService.updateUserFeedAfterFollowing(user: user, didFollow: false)
             }
         }else {
             UserService.follow(uid: user.uid) { error in
@@ -165,7 +167,7 @@ extension ProfileController: ProfileHeaderDelegate {
                 NotificationService.uploadNotification(toUid: user.uid, fromUser: currentUser, type: .follow)
                
                 //->팔로우한 유저의 게시글만 보이도록 설정
-                PostService.updateUserFeedAfterFollowing(user: user)
+                PostService.updateUserFeedAfterFollowing(user: user, didFollow: true)
             }
         }
     }

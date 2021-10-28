@@ -24,7 +24,9 @@ struct PostService {
                         "ownerImageURL": user.profileImageURL,
                         "ownerUsername": user.username] as [String : Any]
             
-            Collection_Posts.addDocument(data: data, completion: completion)
+            let docRef = Collection_Posts.addDocument(data: data, completion: completion)
+            
+            self.updateUserFeedAfterPost(postId: docRef.documentID)
         }
     }
     
@@ -111,7 +113,7 @@ struct PostService {
     }
     
     //->지금 인스타 창에 다보임. 다보이지 않게 팔로우한 유저만 보일수 있게 설정
-    static func updateUserFeedAfterFollowing(user: User) {
+    static func updateUserFeedAfterFollowing(user: User, didFollow: Bool) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         
         let query = Collection_Posts.whereField("ownerUid", isEqualTo: user.uid)
@@ -123,8 +125,27 @@ struct PostService {
 //           print("디버그 현재 팔로우한 아이디: \(docIds)")
             
             docIds.forEach { id in
-                Collection_Users.document(uid).collection("user-feed").document(id).setData([:])
+                if didFollow {
+                    Collection_Users.document(uid).collection("user-feed").document(id).setData([:])
+                } else {
+                    Collection_Users.document(uid).collection("user-feed").document(id).delete()
+                }
             }
         }
+    }
+    //->팔로우 하는 유저만 보이도록 갱신!
+    private static func updateUserFeedAfterPost(postId: String) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        
+        Collection_Followers.document(uid).collection("user_followers").getDocuments { snapshot, _ in
+            guard let documents = snapshot?.documents else { return }
+            
+           
+            documents.forEach { documnet in
+                Collection_Users.document(documnet.documentID).collection("user-feed").document(postId).setData([:])
+            }
+            Collection_Users.document(uid).collection("user-feed").document(postId).setData([:])
+        }
+        
     }
 }
