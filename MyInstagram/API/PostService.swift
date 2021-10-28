@@ -10,6 +10,7 @@ import Firebase
 
 struct PostService {
     
+    //->포스트 업로더
     static func uploadPost(caption: String, image: UIImage, user: User, completion: @escaping(FirestoreCompletion)) {
         
         guard let uid = Auth.auth().currentUser?.uid else { return }
@@ -92,6 +93,38 @@ struct PostService {
             guard let didLike = snapshot?.exists else { return }
             completion(didLike)
         }
+    }
+    
+    static func fetchFeedPosts(completion: @escaping([Post]) -> Void){
+        guard let uid = Auth.auth().currentUser?.uid else { return }
         
+        var posts = [Post]()
+        
+        Collection_Users.document(uid).collection("user-feed").getDocuments { snapshot, error in
+            snapshot?.documents.forEach({ document in
+                fetchPost(withPostId: document.documentID) { post in
+                    posts.append(post)
+                    completion(posts)
+                }
+            })
+        }
+    }
+    
+    //->지금 인스타 창에 다보임. 다보이지 않게 팔로우한 유저만 보일수 있게 설정
+    static func updateUserFeedAfterFollowing(user: User) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        
+        let query = Collection_Posts.whereField("ownerUid", isEqualTo: user.uid)
+        
+        query.getDocuments { (snapshot, error) in
+            guard let documents = snapshot?.documents else { return }
+            
+           let docIds = documents.map({ $0.documentID })
+//           print("디버그 현재 팔로우한 아이디: \(docIds)")
+            
+            docIds.forEach { id in
+                Collection_Users.document(uid).collection("user-feed").document(id).setData([:])
+            }
+        }
     }
 }

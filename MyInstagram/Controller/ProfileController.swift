@@ -39,6 +39,8 @@ class ProfileController: UICollectionViewController {
         checkIfUserIsFollowed()
         fetchUserStats()
         fetchPosts()
+        
+//        PostService.updateUserFeedAfterFollowing(user: user)
     }
     
     // MARK: -API
@@ -161,6 +163,9 @@ extension ProfileController: ProfileHeaderDelegate {
                 self.collectionView.reloadData()
                 
                 NotificationService.uploadNotification(toUid: user.uid, fromUser: currentUser, type: .follow)
+               
+                //->팔로우한 유저의 게시글만 보이도록 설정
+                PostService.updateUserFeedAfterFollowing(user: user)
             }
         }
     }
