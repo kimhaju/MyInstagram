@@ -19,13 +19,17 @@ class FeedController: UICollectionViewController {
     }
     
     var post: Post? {
-        didSet { checkIfUserLikedPost() }
+        didSet { collectionView.reloadData()}
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
         fetchPosts()
+        
+        if post != nil {
+            checkIfUserLikedPost()
+        }
     }
     
     // MARK: - Actions
@@ -33,7 +37,6 @@ class FeedController: UICollectionViewController {
         posts.removeAll()
         fetchPosts()
     }
-    
     
     @objc func handleLogout() {
         do {
@@ -67,7 +70,6 @@ class FeedController: UICollectionViewController {
         if let post = post {
             PostService.checkIfUserLikePost(post: post) { didLike in
                 self.post?.didLike = didLike
-                self.collectionView.reloadData()
             }
             
         }else {
@@ -163,7 +165,8 @@ extension FeedController: FeedCellDelegate {
                 cell.likeButton.tintColor = .black
                 cell.viewModel?.post.likes = post.likes - 1
             }
-        }else {
+            
+        } else {
             PostService.likePost(post: post) { error in
                 cell.likeButton.setImage(#imageLiteral(resourceName: "like_selected"), for: .normal)
                 cell.likeButton.tintColor = .red

@@ -37,5 +37,18 @@ struct PostViewModel {
         }
     }
     
+    var timestampString: String? {
+        let formatter = DateComponentsFormatter()
+        formatter.allowedUnits = [.second, .minute, .hour, .day, .weekOfMonth]
+        //->날짜를 얼만큼 표시할건지 알려주는 카운트 수
+        formatter.maximumUnitCount = 2
+        formatter.unitsStyle = .full
+//            .abbreviated 제일 불친절하고 제일 엉망
+//            .full  ->그나마 제일 깔끔하게 표시
+//            .spellOut -> 좀 불친절함
+
+        return formatter.string(from: post.timestamp.dateValue(), to: Date())
+    }
+    
     init(post: Post) { self.post = post }
 }
