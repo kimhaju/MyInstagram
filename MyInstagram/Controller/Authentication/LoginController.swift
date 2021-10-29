@@ -53,6 +53,7 @@ class LoginController: UIViewController {
         let button = UIButton(type: .system)
         
         button.attributedTitle(firstPart: "비밀번호를 잊어버렸나요?", secondPart: "Get help Signing in")
+        button.addTarget(self, action: #selector(handleShowResetPassword), for: .touchUpInside)
         return button
     }()
     
@@ -73,6 +74,13 @@ class LoginController: UIViewController {
     }
     
     // MARK: - 액션
+    
+    //-> 비밀번호 재설정 버튼
+    @objc func handleShowResetPassword(){
+        let controller = ResetPasswordController()
+        controller.delegate = self
+        navigationController?.pushViewController(controller, animated: true)
+    }
     
     @objc func handleLogin() {
         //->로그인 처리 
@@ -100,7 +108,7 @@ class LoginController: UIViewController {
     @objc func textDidChange(sender: UITextField) {
         if sender == emailTextField {
             viewModel.email = sender.text
-        }else {
+        } else {
             viewModel.passsword = sender.text
         }
         updateForm()
@@ -146,5 +154,15 @@ extension LoginController: FormViewModel {
         loginButton.backgroundColor = viewModel.buttonBackgroundColor
         loginButton.setTitleColor(viewModel.buttonTitleColor, for: .normal)
         loginButton.isEnabled = viewModel.formIsValid
+    }
+}
+
+// MARK: -ResetPasswordControllerDelegate
+
+extension LoginController: ResetPasswordControllerDelegate {
+    func controllerDidSendResetPasswordLink(_ controller: ResetPasswordController) {
+        navigationController?.popViewController(animated: true)
+        showMessage(withTitle: "Success",
+                    message: "등록하신 이메일로 초기화된 비밀번호를 보냈습니다!")
     }
 }

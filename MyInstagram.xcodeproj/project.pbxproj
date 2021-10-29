@@ -43,6 +43,7 @@
 		9A5B4268270813D000EABD65 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5B4267270813D000EABD65 /* UserCell.swift */; };
 		9A60FF7527058F6A0045811C /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A60FF7427058F6A0045811C /* ProfileCell.swift */; };
 		9A60FF7827058F810045811C /* ProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A60FF7727058F810045811C /* ProfileHeader.swift */; };
+		9A669EA3272B74CA00D5EEC8 /* ResetPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A669EA2272B74CA00D5EEC8 /* ResetPasswordController.swift */; };
 		9A792BC8270EED7A00DD749F /* UploadPostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A792BC7270EED7A00DD749F /* UploadPostController.swift */; };
 		9A792BCB270EFEDE00DD749F /* InputTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A792BCA270EFEDE00DD749F /* InputTextView.swift */; };
 		9A7A97022715C49800AA3E3D /* CommentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A7A97012715C49800AA3E3D /* CommentViewModel.swift */; };
@@ -94,6 +95,7 @@
 		9A5B4267270813D000EABD65 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		9A60FF7427058F6A0045811C /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
 		9A60FF7727058F810045811C /* ProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeader.swift; sourceTree = "<group>"; };
+		9A669EA2272B74CA00D5EEC8 /* ResetPasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordController.swift; sourceTree = "<group>"; };
 		9A792BC7270EED7A00DD749F /* UploadPostController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPostController.swift; sourceTree = "<group>"; };
 		9A792BCA270EFEDE00DD749F /* InputTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTextView.swift; sourceTree = "<group>"; };
 		9A7A97012715C49800AA3E3D /* CommentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewModel.swift; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 			children = (
 				9A4207A62702F57900DDE299 /* LoginController.swift */,
 				9A4207AA2702F5CE00DDE299 /* RegistrationController.swift */,
+				9A669EA2272B74CA00D5EEC8 /* ResetPasswordController.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -419,6 +422,7 @@
 				9A002A432710750000B9DA3F /* PostService.swift in Sources */,
 				9A0332E92705C13800D56892 /* UserService.swift in Sources */,
 				9A60FF7527058F6A0045811C /* ProfileCell.swift in Sources */,
+				9A669EA3272B74CA00D5EEC8 /* ResetPasswordController.swift in Sources */,
 				9AA3C8E32715A6EE00738B1D /* Comment.swift in Sources */,
 				9A39CD892701FB7B0073065A /* Extensions.swift in Sources */,
 				9A2CCFEE271EEE7C00C28700 /* NotificationCell.swift in Sources */,
