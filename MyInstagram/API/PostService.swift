@@ -39,21 +39,25 @@ struct PostService {
         }
     }
     
+    //->팔로우한 유저 뿐만 아니라 전부  포스트를 보이게 해주는 것
     static func fetchPosts(forUser uid: String, completion: @escaping([Post]) -> Void) {
         let query = Collection_Posts.whereField("ownerUid", isEqualTo: uid)
-        
         query.getDocuments { (snapshot, error) in
             guard let documents = snapshot?.documents else { return }
             
             var posts = documents.map({ Post(postId: $0.documentID, dictionary: $0.data())})
             
-            posts.sort { (post1, post2) -> Bool in
-                return post1.timestamp.seconds > post2.timestamp.seconds
-            }
+            posts.sort(by: { $0.timestamp.seconds > $1.timestamp.seconds })
             
+//            posts.sort { (post1, post2) -> Bool in
+//                return post1.timestamp.seconds > post2.timestamp.seconds
+//            }
+//
             completion(posts)
         }
     }
+    
+    //-> 포스트 개인
     static func fetchPost(withPostId postId: String, completion: @escaping(Post) -> Void){
         
         Collection_Posts.document(postId).getDocument { snapshot, _ in
@@ -106,6 +110,14 @@ struct PostService {
             snapshot?.documents.forEach({ document in
                 fetchPost(withPostId: document.documentID) { post in
                     posts.append(post)
+                    
+                    //->팔로우한 포스트를 시간 순서대별로 나열
+                    posts.sort(by: { $0.timestamp.seconds > $1.timestamp.seconds })
+                    
+//                    posts.sort { (post1, post2) -> Bool in
+//                        return post1.timestamp.seconds > post2.timestamp.seconds
+//                    }
+                    
                     completion(posts)
                 }
             })

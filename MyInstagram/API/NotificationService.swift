@@ -37,12 +37,13 @@ struct NotificationService {
         
         guard let uid = Auth.auth().currentUser?.uid else { return }
         
-        Collection_Notifications.document(uid).collection("user-notification").getDocuments { snapshot, _ in
-            
+        let query = Collection_Notifications.document(uid).collection("user-notification").order(by: "timestamp", descending: true)
+        
+        query.getDocuments { snapshot, _ in
             guard let documents = snapshot?.documents else { return }
-            
             let notifications = documents.map({Notification(dictionary: $0.data())})
             completion(notifications)
         }
     }
 }
+
